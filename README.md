@@ -1,221 +1,177 @@
-# 🛡️ CyberRazor - VS Code Extension
+# 🛡️ CyberRazor - VS Code Security Extension
 
-**Real-time vulnerability detection and security advisor powered by Snyk**
+**Real-time vulnerability detection and security advisor for your code**
 
-[![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://marketplace.visualstudio.com/items?itemName=nisa-iqbal.cyberrazor)
+CyberRazor is a powerful VS Code extension that provides comprehensive security scanning capabilities for your codebase. Get instant feedback on security vulnerabilities as you code, powered by both Snyk integration and built-in security patterns.
+
+[![Version](https://img.shields.io/badge/version-4.0.0-blue.svg)](https://marketplace.visualstudio.com/items?itemName=Minhal128.cyberrazor)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![VS Code](https://img.shields.io/badge/VS%20Code-1.74.0+-blue.svg)](https://code.visualstudio.com/)
 
-## 🚀 Features
+## ✨ Key Features
 
-### 🔍 **Automatic Security Scanning**
-- **Real-time scanning** on every file save (Ctrl+S)
-- **Multi-language support** for JavaScript, TypeScript, Python, Java, Go, Ruby, PHP, and more
-- **Intelligent file detection** - only scans supported file types
-
-### 🚨 **Vulnerability Detection**
-- **Severity classification**: Critical, High, Medium, Low
-- **Line-by-line highlighting** using VS Code Diagnostics API
-- **Hover tooltips** with vulnerability details and remediation advice
-- **Package vulnerability tracking** with version information
-
-### 📊 **Comprehensive Reporting**
-- **Structured reports** in Markdown or HTML format
-- **Vulnerability summaries** with severity breakdowns
-- **Affected files and line numbers** for easy navigation
-- **Remediation recommendations** and upgrade paths
-- **Official resource links** to Snyk documentation
-
-### 🎯 **Command Palette Integration**
-- **Scan Current File**: Analyze active editor for vulnerabilities
-- **Scan Workspace**: Comprehensive project-wide security audit
-- **View Last Report**: Quick access to latest scan results
-- **Configure Snyk Token**: Easy API token management
-
-### ⚙️ **Smart Configuration**
-- **Auto-scan on save** (configurable)
-- **Severity thresholds** to filter noise
-- **Report format selection** (Markdown/HTML)
-- **Snyk CLI integration** with installation prompts
-
-## 📦 Installation
-
-### Prerequisites
-1. **Visual Studio Code** 1.74.0 or higher
-2. **Snyk CLI** (will prompt for installation if missing)
-
-### Extension Installation
-1. Open VS Code
-2. Press `Ctrl+Shift+X` to open Extensions
-3. Search for "CyberRazor"
-4. Click Install
-
-### Snyk CLI Setup
-```bash
-# Install Snyk CLI globally
-npm install -g snyk
-
-# Authenticate with your Snyk account
-snyk auth
-```
+- **🔍 Real-time vulnerability detection** - Scan your code as you type
+- **🌐 Multi-language support** - JavaScript, TypeScript, Python, Java, PHP, and more
+- **📊 Detailed vulnerability reports** - Get comprehensive security insights in JSON and HTML formats
+- **🔧 Dual scanning modes** - Snyk integration + built-in fallback scanner
+- **⚙️ Customizable scanning** - Configure scan behavior to match your workflow
+- **📱 Interactive reports** - Browse vulnerabilities with detailed explanations and remediation advice
+- **🚨 Multiple severity levels** - Critical, High, Medium, and Low vulnerability classification
 
 ## 🚀 Quick Start
 
-### 1. **First Scan**
-- Open any supported file (`.js`, `.ts`, `.py`, `.java`, etc.)
-- Press `Ctrl+S` to save - automatic scan begins
-- View results in Problems panel and hover tooltips
+### Installation Options
 
-### 2. **Manual Scanning**
-- **Current File**: `Ctrl+Shift+P` → "CyberRazor: Scan Current File"
-- **Workspace**: `Ctrl+Shift+P` → "CyberRazor: Scan Workspace"
-
-### 3. **View Reports**
-- `Ctrl+Shift+P` → "CyberRazor: View Last Report"
-- Reports are saved in `/cyberrazor-reports` folder
-- Opens in VS Code preview with syntax highlighting
-
-## ⚙️ Configuration
-
-### Extension Settings
-Open VS Code Settings (`Ctrl+,`) and search for "CyberRazor":
-
-```json
-{
-  "cyberrazor.snykToken": "your-snyk-api-token",
-  "cyberrazor.autoScanOnSave": true,
-  "cyberrazor.reportFormat": "markdown",
-  "cyberrazor.severityThreshold": "low"
-}
+#### Option 1: Install from VSIX (Recommended)
+```bash
+code --install-extension cyberrazor-4.0.0.vsix
 ```
 
-### Snyk Token Configuration
-1. Get your Snyk API token from [Snyk Dashboard](https://app.snyk.io/account)
-2. `Ctrl+Shift+P` → "CyberRazor: Configure Snyk Token"
-3. Enter your token when prompted
+#### Option 2: VS Code Marketplace
+1. Open VS Code Extensions (Ctrl+Shift+X)
+2. Search for "CyberRazor"
+3. Click Install
 
-## 🔧 Supported Languages
+### First Use
 
-| Language | Extensions | Package Managers |
-|----------|------------|------------------|
-| **JavaScript/Node.js** | `.js`, `.jsx`, `.ts`, `.tsx` | `npm`, `yarn`, `pnpm` |
-| **Python** | `.py` | `pip`, `poetry`, `pipenv` |
-| **Java** | `.java` | `maven`, `gradle` |
-| **Go** | `.go` | `go mod` |
-| **Ruby** | `.rb` | `bundler` |
-| **PHP** | `.php` | `composer` |
-| **C#** | `.cs` | `nuget` |
-| **Rust** | `.rs` | `cargo` |
+1. **Configure Snyk Token** (Optional but recommended)
+   - Command Palette (Ctrl+Shift+P) → "CyberRazor: Configure Snyk Token"
+   - Get your free token from [snyk.io](https://snyk.io)
 
-## 📊 Understanding Reports
+2. **Start Scanning**
+   - Right-click any file → "CyberRazor: Scan Current File"
+   - Or use Command Palette → "CyberRazor: Scan Workspace"
 
-### Vulnerability Severity Levels
-- 🔴 **Critical**: Immediate action required, potential for severe damage
-- 🟠 **High**: High priority, should be addressed quickly
-- 🟡 **Medium**: Moderate risk, plan for next development cycle
-- 🔵 **Low**: Low risk, monitor and address when convenient
+3. **View Results**
+   - Check the output panel for JSON results
+   - HTML reports open automatically
+   - Command Palette → "CyberRazor: View Last Report"
 
-### Report Contents
-- **Executive Summary**: Vulnerability counts by severity
-- **Detailed Findings**: Each vulnerability with full context
-- **Affected Dependencies**: Package names and versions
-- **Remediation Steps**: Upgrade paths and fix recommendations
-- **Resource Links**: Official documentation and references
+## 🔧 Configuration Settings
 
-## 🛠️ Troubleshooting
+| Setting | Default | Description |
+|---------|---------|-------------|
+| `cyberrazor.snykToken` | `""` | Your Snyk API token for enhanced scanning |
+| `cyberrazor.autoScanOnSave` | `true` | Automatically scan files when saved |
+| `cyberrazor.reportFormat` | `"markdown"` | Report format: "markdown" or "html" |
+| `cyberrazor.severityThreshold` | `"low"` | Minimum severity: "low", "medium", "high", "critical" |
+
+## 📋 Available Commands
+
+| Command | Description | Shortcut |
+|---------|-------------|----------|
+| `CyberRazor: Scan Current File` | Scan the currently active file | Right-click menu |
+| `CyberRazor: Scan Workspace` | Scan all files in workspace | Command Palette |
+| `CyberRazor: View Last Report` | Open most recent scan report | Command Palette |
+| `CyberRazor: Configure Snyk Token` | Set up Snyk API token | Command Palette |
+| `CyberRazor: Show Output Log` | View detailed scan logs | Command Palette |
+| `CyberRazor: Force Show Output Panel` | Force display output panel | Command Palette |
+
+## 🎯 Vulnerability Detection
+
+CyberRazor detects these common security issues:
+
+### High Severity
+- **Hardcoded passwords** - Plain text credentials in code
+- **Hardcoded API keys** - Exposed API tokens and keys
+- **SQL injection patterns** - Unsafe database queries
+- **Code injection (eval)** - Dynamic code execution vulnerabilities
+- **Command injection** - OS command execution risks
+
+### Medium Severity
+- **XSS vulnerabilities** - Cross-site scripting patterns
+- **Insecure HTTP usage** - Unencrypted HTTP connections
+- **Weak random generation** - Predictable random number usage
+
+### Low Severity
+- **Console logging sensitive data** - Exposed sensitive information in logs
+- **Insecure JSON parsing** - Unsafe JSON handling
+
+## 🏗️ Development & Contributing
+
+### Building from Source
+
+```bash
+git clone https://github.com/Minhal128/CyberRazor-Extension.git
+cd CyberRazor-Extension
+npm install
+npm run compile
+```
+
+### Available Scripts
+
+```bash
+npm run compile      # Compile TypeScript
+npm run watch        # Watch for changes
+npm run test         # Run tests
+npm run lint         # Lint code
+```
+
+### Packaging the Extension
+
+```bash
+npx vsce package --allow-package-all-secrets
+```
+
+## 📁 Project Structure
+
+```
+cyberrazor-vscode/
+├── src/
+│   ├── extension.ts     # Main extension logic
+│   ├── css/            # Styling for reports
+│   └── test/           # Test suites
+├── images/             # Extension assets
+├── out/               # Compiled JavaScript
+├── package.json       # Extension manifest
+└── README.md         # This file
+```
+
+## 🚨 Troubleshooting
 
 ### Common Issues
 
-#### "Snyk CLI not found"
-```bash
-# Install Snyk CLI globally
-npm install -g snyk
+**"Snyk CLI not found" error:**
+- The extension works without Snyk CLI using built-in patterns
+- Install Snyk CLI globally: `npm install -g snyk`
+- Or continue using the built-in fallback scanner
 
-# Verify installation
-snyk --version
-```
+**No vulnerabilities detected:**
+- Try the test file in `test-vulnerabilities.js`
+- Check if file types are supported
+- Adjust severity threshold in settings
 
-#### "Authentication failed"
-1. Check your Snyk API token: `snyk config get api-token`
-2. Re-authenticate: `snyk auth`
-3. Update token in VS Code settings
+**Output not showing:**
+- Use "CyberRazor: Force Show Output Panel"
+- Check VS Code's Output panel for "CyberRazor" channel
 
-#### "No vulnerabilities found"
-- Ensure you're scanning a project with dependencies
-- Check if `package.json`, `requirements.txt`, etc. exist
-- Verify Snyk has access to your project
+### Getting Help
 
-#### "Scan taking too long"
-- Large projects may take several minutes
-- Check Snyk rate limits and API status
-- Consider scanning individual files instead of workspace
+1. Check the [Installation Guide](INSTALLATION_INSTRUCTIONS.md)
+2. Review [Troubleshooting Documentation](FIX_VSCODE_EXTENSION.md)
+3. [Create an issue](https://github.com/Minhal128/CyberRazor-Extension/issues) on GitHub
 
-### Debug Mode
-Enable detailed logging in VS Code Developer Console:
-1. `Ctrl+Shift+P` → "Developer: Toggle Developer Tools"
-2. Check Console tab for detailed scan information
+## 📚 Documentation
 
-## 🔗 Integration
-
-### CI/CD Pipeline
-```yaml
-# GitHub Actions example
-- name: Security Scan
-  run: |
-    npm install -g snyk
-    snyk test --severity-threshold=high
-```
-
-### Pre-commit Hooks
-```json
-// package.json
-{
-  "husky": {
-    "hooks": {
-      "pre-commit": "snyk test --severity-threshold=medium"
-    }
-  }
-}
-```
-
-## 📈 Performance Tips
-
-- **File-level scanning** is faster than workspace scanning
-- **Configure severity thresholds** to reduce noise
-- **Use Snyk CI/CD integration** for automated scanning
-- **Regular dependency updates** reduce vulnerability surface
-
-## 🤝 Contributing
-
-We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
-
-### Development Setup
-```bash
-git clone https://github.com/nisa-iqbal/cyberrazor-vscode.git
-cd cyberrazor-vscode
-npm install
-npm run compile
-npm run watch
-```
+- [Installation Instructions](INSTALLATION_INSTRUCTIONS.md)
+- [Deployment Guide](DEPLOYMENT_GUIDE.md)
+- [Contributing Guidelines](CONTRIBUTING.md)
+- [Change Log](CHANGELOG.md)
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+MIT License - see [LICENSE](LICENSE) for details.
+
+Copyright (c) 2025 Minhal Rizvi
 
 ## 🙏 Acknowledgments
 
-- **Snyk** for providing the vulnerability database and CLI
-- **VS Code Team** for the excellent extension API
-- **Open Source Community** for security research and tools
-
-## 📞 Support
-
-- **Issues**: [GitHub Issues](https://github.com/nisa-iqbal/cyberrazor-vscode/issues)
-- **Documentation**: [Snyk Documentation](https://docs.snyk.io/)
-- **Security**: [Snyk Security](https://security.snyk.io/)
+- Powered by [Snyk](https://snyk.io) for vulnerability data
+- Built with [VS Code Extension API](https://code.visualstudio.com/api)
+- Thanks to all contributors and the open-source community
 
 ---
 
-**Built with ❤️ by NISA IQBAL**
+**🛡️ Stay secure, code confidently with CyberRazor!**
 
-*Empowering developers with real-time security intelligence*
+*Last updated: January 2025*
