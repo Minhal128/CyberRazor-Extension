@@ -74,6 +74,7 @@ example-reports/
 # Dynamic test files
 dynamic-test.js
 test-*.js
+!test-vulnerabilities.js
 working-scanner.js
 quick-scan.js
 
