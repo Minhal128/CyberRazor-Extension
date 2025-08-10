@@ -1,0 +1,173 @@
+{
+  "name": "cyberrazor",
+  "displayName": "CyberRazor",
+  "description": "Real-time vulnerability detection and security advisor using Snyk",
+  "version": "4.0.0",
+  "publisher": "nisa-iqbal",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "security",
+    "vulnerability",
+    "snyk",
+    "code-analysis",
+    "security-scanning",
+    "cybersecurity"
+  ],
+  "main": "./out/extension.js",
+  "activationEvents": [
+    "onStartupFinished",
+    "onCommand:cyberrazor.scanCurrentFile",
+    "onCommand:cyberrazor.scanWorkspace",
+    "onCommand:cyberrazor.viewLastReport",
+    "onCommand:cyberrazor.configureSnykToken",
+    "onCommand:cyberrazor.showOutput",
+    "onCommand:cyberrazor.showDirectOutput",
+    "onCommand:cyberrazor.forceShowOutput"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "cyberrazor.scanCurrentFile",
+        "title": "CyberRazor: Scan Current File",
+        "category": "CyberRazor"
+      },
+      {
+        "command": "cyberrazor.scanWorkspace",
+        "title": "CyberRazor: Scan Workspace",
+        "category": "CyberRazor"
+      },
+      {
+        "command": "cyberrazor.viewLastReport",
+        "title": "CyberRazor: View Last Report",
+        "category": "CyberRazor"
+      },
+      {
+        "command": "cyberrazor.configureSnykToken",
+        "title": "CyberRazor: Configure Snyk Token",
+        "category": "CyberRazor"
+      },
+      {
+        "command": "cyberrazor.showOutput",
+        "title": "CyberRazor: Show Output Log",
+        "category": "CyberRazor"
+      },
+      {
+        "command": "cyberrazor.showDirectOutput",
+        "title": "CyberRazor: Show Global Output Log",
+        "category": "CyberRazor"
+      },
+      {
+        "command": "cyberrazor.forceShowOutput",
+        "title": "CyberRazor: Force Show Output Panel",
+        "category": "CyberRazor"
+      }
+    ],
+    "configuration": {
+      "title": "CyberRazor",
+      "properties": {
+        "cyberrazor.snykToken": {
+          "type": "string",
+          "default": "",
+          "description": "Snyk API token for vulnerability scanning"
+        },
+        "cyberrazor.autoScanOnSave": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically scan files on save"
+        },
+        "cyberrazor.reportFormat": {
+          "type": "string",
+          "enum": [
+            "markdown",
+            "html"
+          ],
+          "default": "markdown",
+          "description": "Format for vulnerability reports"
+        },
+        "cyberrazor.severityThreshold": {
+          "type": "string",
+          "enum": [
+            "low",
+            "medium",
+            "high",
+            "critical"
+          ],
+          "default": "low",
+          "description": "Minimum severity level to report"
+        }
+      }
+    },
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "cyberrazor.scanCurrentFile",
+          "when": "editorTextFocus"
+        },
+        {
+          "command": "cyberrazor.scanWorkspace",
+          "when": "workspaceFolderCount > 0"
+        }
+      ],
+      "editor/context": [
+        {
+          "command": "cyberrazor.scanCurrentFile",
+          "group": "cyberrazor",
+          "when": "editorTextFocus"
+        }
+      ],
+      "view/title": [
+        {
+          "command": "cyberrazor.forceShowOutput",
+          "when": "view == output",
+          "group": "navigation"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js",
+    "test:basic": "node test-scan.js",
+    "test:dynamic": "node dynamic-test.js",
+    "test:simple": "node test.js",
+    "test:run": "node run-dynamic-test.js",
+    "start": "node run-dynamic-test.js dynamic"
+  },
+  "devDependencies": {
+    "@types/glob": "^8.1.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "16.x",
+    "@types/vscode": "^1.74.0",
+    "@typescript-eslint/eslint-plugin": "^5.42.0",
+    "@typescript-eslint/parser": "^5.42.0",
+    "@vscode/test-electron": "^2.5.2",
+    "@vscode/vsce": "^3.6.0",
+    "eslint": "^8.26.0",
+    "typescript": "^4.8.4"
+  },
+  "dependencies": {
+    "axios": "^1.6.0",
+    "express": "^4.17.1",
+    "lodash": "^4.17.15",
+    "marked": "^9.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Minhal128/CyberRazor-Extension.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Minhal128/CyberRazor-Extension/issues"
+  },
+  "homepage": "https://github.com/Minhal128/CyberRazor-Extension#readme",
+  "license": "MIT",
+  "icon": "images/logo.png"
+}
